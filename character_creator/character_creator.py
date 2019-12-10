@@ -22,17 +22,17 @@ def assign_archetype():
     for i in archetypes_list:
         print(i)
     archetype = input("Please choose an archetype: ")
+    print()
     archetype = archetype[0].upper() + archetype[1:].lower()
 
     if archetype not in archetypes_list:
         assign_archetype()
-    else:
-        print(archetype)
 
 
 def assign_name():
     global name
     name = input("Please enter the name of your new character: ")
+    print()
 
 
 def assign_race():
@@ -40,20 +40,17 @@ def assign_race():
     for i in races_list:
         print(i)
     race = input("Please choose a race: ")
+    print()
     race = race[0].upper() + race[1:].lower()
 
     if race not in races_list:
         assign_race()
-    else:
-        print(race)
 
 
-# assign_race()
-# assign_archetype()
-# assign_name()
+assign_race()
+assign_archetype()
+assign_name()
 
-
-# print(name, race, archetype)
 
 def ability_score_generator():
     global ability_scores_rolls
@@ -69,24 +66,34 @@ def ability_score_generator():
 
 
 [ability_score_generator() for _ in range(6)]
-print(ability_scores_rolls)
+for i in ability_scores:
+    print(i)
+print(f"Your ability score rolls: {ability_scores_rolls}")
 
 
 def assign_ability_scores():
-    strength = input(
-        "Please assign your strength from your ability scores rolls: ")
-    print(strength)
-    if strength not in ability_scores_rolls:
-        assign_ability_scores()
-    else:
-        for i in ability_scores_rolls:
-            if i == strength:
-                ability_scores["strength"] = strength
-                del ability_scores_rolls[i]
-    print(ability_scores_rolls)
-
-    for key, value in ability_scores.items():
-        print(key, value)
+    while len(ability_scores_rolls) > 0:
+        i = ability_scores_rolls[0]
+        attribute = input(f"Which attribute would you like to apply {i} to? ")
+        attribute = attribute.lower()
+        if attribute not in ability_scores:
+            print("try again")
+            print()
+            print(ability_scores)
+            assign_ability_scores()
+        else:
+            ability_scores[attribute] = i
+            print(ability_scores)
+            print()
+            del ability_scores_rolls[0]
+            print(
+                f"Your remaining ability score rolls: {ability_scores_rolls}")
 
 
 assign_ability_scores()
+print()
+print(f"{name} is a {race} {archetype}")
+print()
+print(f"{name}'s ability scores: ")
+for i in ability_scores:
+    print(f"{i}: {ability_scores[i]}")
