@@ -76,7 +76,7 @@ def assign_ability_scores():
         i = ability_scores_rolls[0]
         attribute = input(f"Which attribute would you like to apply {i} to? ")
         attribute = attribute.lower()
-        if attribute not in ability_scores:
+        if attribute not in ability_scores or ability_scores[attribute] != 0:
             print("try again")
             print()
             print(ability_scores)
