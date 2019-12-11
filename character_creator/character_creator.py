@@ -4,6 +4,15 @@ archetypes_list = ["Wizard", "Ranger", "Rogue", "Fighter", "Cleric"]
 races_list = ["Human", "Dwarf", "Half-Orc", "Eladrin", "Dragonborn"]
 ability_scores_rolls = []
 
+
+class Character:
+    def __init__(self, name, race, archetype, ability_scores):
+        self.name = name
+        self.race = race
+        self.archetype = archetype
+        self.ability_scores = ability_scores
+
+
 archetype = ""
 name = ""
 race = ""
@@ -91,9 +100,12 @@ def assign_ability_scores():
 
 
 assign_ability_scores()
+new_character = Character(name, race, archetype, ability_scores)
+
+
 print()
-print(f"{name} is a {race} {archetype}")
+print(f"{new_character.name} is a {new_character.race} {new_character.archetype}")
 print()
-print(f"{name}'s ability scores: ")
-for i in ability_scores:
-    print(f"{i}: {ability_scores[i]}")
+print(f"{new_character.name}'s ability scores: ")
+for i in new_character.ability_scores:
+    print(f"{i}: {new_character.ability_scores[i]}")
