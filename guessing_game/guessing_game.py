@@ -1,21 +1,18 @@
 from random import randrange
 n = randrange(1, 100)
-min = 1
-max = 100
+print(n)
 
 
-def guessing_game():
-    guess = input("Guess a number between 1 and 100: ")
-    guess = int(guess)
-
+def guess_engine():
+    guess = int(input("Please enter a number between 1 and 100: "))
     if guess < n:
-        print("Sorry, you guessed too low. Try again.")
-        min = guess + 1
+        print("Please guess a higher number.")
+        guess_engine()
     elif guess > n:
-        print("Sorry, you guessed too high. Try again.")
-        max = guess - 1
+        print("Please guess a lower number.")
+        guess_engine()
     else:
-        print(f"You found the number! {n}")
+        print("You guessed the correct number!")
 
 
-guessing_game()
+guess_engine()
