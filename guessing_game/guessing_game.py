@@ -26,3 +26,5 @@ def engine(number, choices):
 
 
 print(engine(n, l))
+
+# Final version credit goes to aid received from u/Vaphell and u/Phillyclause89 from the r/learnpython subreddit.
