@@ -10,7 +10,7 @@ def engine(number, choices):
         try:
             guess = int(
                 input(f"Please enter a number from {min(choices)} to {max(choices)}: "))
-            if not min(choices) <= guess <= max(choices):
+            if guess not in choices:
                 raise ValueError
             if guess == number:
                 return "You guessed the correct number!"
