@@ -40,15 +40,16 @@ def playGame(difficulty):
 
 
 def main():
-    bLevelDifficulty = int(1)
+    levelDifficulty = int(1)
     maxLevel = int(5)
 
-    while (bLevelDifficulty <= maxLevel):
-        levelComplete = playGame(bLevelDifficulty)
-        if (levelComplete == True):
-            ++bLevelDifficulty
+    while (levelDifficulty <= maxLevel):
+        levelComplete = playGame(levelDifficulty)
 
-    return
+        if (levelComplete == True):
+            levelDifficulty += 1
+
+    return 0
 
 
 main()
