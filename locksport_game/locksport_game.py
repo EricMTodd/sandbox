@@ -19,24 +19,28 @@ def playGame(difficulty):
     print(f"The numbers in the code add up to {codeSum}.")
     print(f"The product of the numbers in the code is {codeProduct}.")
 
-    guessA = input("Please guess the first digit of the code: ")
-    guessB = input("Please guess the second digit of the code: ")
-    guessC = input("Please guess the third digit of the code: ")
+    try:
+        guessA = int(input("Please guess the first digit of the code: "))
+        guessB = int(input("Please guess the second digit of the code: "))
+        guessC = int(input("Please guess the third digit of the code: "))
 
-    print(f"Your guess: {guessA} {guessB} {guessC}")
+        print(f"Your guess: {guessA} {guessB} {guessC}")
 
-    guessSum = int(guessA) + int(guessB) + int(guessC)
-    guessProduct = int(guessA) * int(guessB) * int(guessC)
+        guessSum = guessA + guessB + guessC
+        guessProduct = guessA * guessB * guessC
 
-    print(f"The sum of your guess is {guessSum}.")
-    print(f"The product of your guess is {guessProduct}.")
+        print(f"The sum of your guess is {guessSum}.")
+        print(f"The product of your guess is {guessProduct}.")
 
-    if (guessSum == codeSum and guessProduct == codeProduct):
-        print("You pop the lock, and throw open the door at a dead sprint into the night!")
-        return True
-    else:
-        print("The guards have caught you, they beat you into unconsciousness...")
-        return False
+        if (guessSum == codeSum and guessProduct == codeProduct):
+            print(
+                "You pop the lock, and throw open the door at a dead sprint into the night!")
+            return True
+        else:
+            print("The guards have caught you, they beat you into unconsciousness...")
+            return False
+    except ValueError:
+        print("You have entered an invalid character. Please try again.")
 
 
 def main():
