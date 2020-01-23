@@ -1,12 +1,10 @@
 def printIntroduction(difficulty):
     print("You've just stolen a pricelss artifact worth untold riches, you can hear the guards running towards you just around the corner.")
-    print(
-        f"You are desperately trying to undo the level {difficulty} lock to the door that bars your only escape from imminent doom.")
+
     print("You reach for the note torn from the scientist's journal and it all comes together...")
 
 
 def playGame(difficulty):
-    printIntroduction(difficulty)
 
     codeA = int(4)
     codeB = int(3)
@@ -14,6 +12,9 @@ def playGame(difficulty):
 
     codeSum = int(codeA) + int(codeB) + int(codeC)
     codeProduct = int(codeA) * int(codeB) * int(codeC)
+
+    print(
+        f"You are desperately trying to undo the level {difficulty} lock to the door that bars your only escape from imminent doom.")
 
     print("There are three numbers in the code.")
     print(f"The numbers in the code add up to {codeSum}.")
@@ -34,7 +35,7 @@ def playGame(difficulty):
 
         if (guessSum == codeSum and guessProduct == codeProduct):
             print(
-                "You pop the lock, and throw open the door at a dead sprint into the night!")
+                f"You feel the tumbler slide into place, {5 - difficulty} tumblers left.")
             return True
         else:
             print("The guards have caught you, they beat you into unconsciousness...")
@@ -46,6 +47,7 @@ def playGame(difficulty):
 def main():
     levelDifficulty = int(1)
     maxLevel = int(5)
+    printIntroduction(levelDifficulty)
 
     while (levelDifficulty <= maxLevel):
         levelComplete = playGame(levelDifficulty)
@@ -53,6 +55,8 @@ def main():
         if (levelComplete == True):
             levelDifficulty += 1
 
+    print(
+        "You pop the lock, and throw open the door at a dead sprint into the night!")
     return 0
 
 
