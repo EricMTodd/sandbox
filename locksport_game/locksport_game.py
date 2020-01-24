@@ -1,3 +1,6 @@
+from random import randint
+
+
 def printIntroduction(difficulty):
     print("You've just stolen a pricelss artifact worth untold riches, you can hear the guards running towards you just around the corner.")
 
@@ -6,15 +9,15 @@ def printIntroduction(difficulty):
 
 def playGame(difficulty):
 
-    codeA = int(4)
-    codeB = int(3)
-    codeC = int(2)
+    codeA = int(randint(1, 5))
+    codeB = int(randint(1, 5))
+    codeC = int(randint(1, 5))
 
     codeSum = int(codeA) + int(codeB) + int(codeC)
     codeProduct = int(codeA) * int(codeB) * int(codeC)
 
     print(
-        f"You are desperately trying to undo the level {difficulty} lock to the door that bars your only escape from imminent doom.")
+        f"You are currently on tumbler number {difficulty}.")
 
     print("There are three numbers in the code.")
     print(f"The numbers in the code add up to {codeSum}.")
@@ -29,9 +32,6 @@ def playGame(difficulty):
 
         guessSum = guessA + guessB + guessC
         guessProduct = guessA * guessB * guessC
-
-        print(f"The sum of your guess is {guessSum}.")
-        print(f"The product of your guess is {guessProduct}.")
 
         if (guessSum == codeSum and guessProduct == codeProduct):
             print(
