@@ -2,9 +2,9 @@ from random import randint
 
 
 def printIntroduction(difficulty):
-    print("You've just stolen a pricelss artifact worth untold riches, you can hear the guards running towards you just around the corner.")
+    print("\nYou've just stolen a pricelss artifact worth a fortune, it won't be long until you're caught.")
 
-    print("You reach for the note torn from the scientist's journal and it all comes together...")
+    print("You find a locked door barring your escape. You pull out your lockpicking kit and get to work.\n")
 
 
 def playGame(difficulty):
@@ -17,11 +17,11 @@ def playGame(difficulty):
     codeProduct = int(codeA) * int(codeB) * int(codeC)
 
     print(
-        f"You are currently on tumbler number {difficulty}.")
+        f"You are currently on tumbler number {difficulty}.\n")
 
-    print("There are three numbers in the code.")
+    print("You must guess a three number code in order to successfully fit each tumbler into place.")
     print(f"The numbers in the code add up to {codeSum}.")
-    print(f"The product of the numbers in the code is {codeProduct}.")
+    print(f"The product of the numbers in the code is {codeProduct}.\n")
 
     try:
         guessA = int(input("Please guess the first digit of the code: "))
@@ -38,10 +38,10 @@ def playGame(difficulty):
                 f"You feel the tumbler slide into place, {5 - difficulty} tumblers left.")
             return True
         else:
-            print("The guards have caught you, they beat you into unconsciousness...")
+            print("The guards have caught you, they beat you into unconsciousness...\n")
             return False
     except ValueError:
-        print("You have entered an invalid character. Please try again.")
+        print("\n***You have entered an invalid character. Please try again.***\n")
 
 
 def main():
