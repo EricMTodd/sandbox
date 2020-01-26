@@ -20,7 +20,7 @@ def playGame(difficulty, maxLevel, attempts):
     codeSum = int(codeA) + int(codeB) + int(codeC)
     codeProduct = int(codeA) * int(codeB) * int(codeC)
 
-    if difficulty == 5:
+    if difficulty == maxLevel:
         print(
             f"You're on the last tumbler!\n")
 
@@ -51,17 +51,17 @@ def playGame(difficulty, maxLevel, attempts):
 
 
 def main():
-    levelDifficulty = int(1)
+    difficulty = int(1)
     maxLevel = int(5)
     attempts = int(ceil(maxLevel * 0.25))
 
     printIntroduction(maxLevel, attempts)
 
-    while (levelDifficulty <= maxLevel):
-        levelComplete = playGame(levelDifficulty, maxLevel, attempts)
+    while (difficulty <= maxLevel):
+        levelComplete = playGame(difficulty, maxLevel, attempts)
 
         if (levelComplete == True):
-            levelDifficulty += 1
+            difficulty += 1
             print(
                 f"SUCCESS!\nYou feel the tumbler slide into place.\n")
         else:
