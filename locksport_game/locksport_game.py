@@ -9,18 +9,22 @@ def printIntroduction(difficulty):
 
 def playGame(difficulty):
 
-    codeA = int(randint(1, 5))
-    codeB = int(randint(1, 5))
-    codeC = int(randint(1, 5))
+    codeA = int(randint(1, 2 + difficulty))
+    codeB = int(randint(1, 2 + difficulty))
+    codeC = int(randint(1, 2 + difficulty))
 
     codeSum = int(codeA) + int(codeB) + int(codeC)
     codeProduct = int(codeA) * int(codeB) * int(codeC)
 
-    print(
-        f"You are currently on tumbler number {difficulty}.\n")
+    if difficulty < 5:
+        print(
+            f"You are currently on tumbler number {difficulty}.\n{6 - difficulty} tumblers left.\n")
+    else:
+        print(
+            f"You're on the last tumbler!\n")
 
     print("You must guess a three number code in order to successfully fit each tumbler into place.")
-    print(f"The numbers in the code add up to {codeSum}.")
+    print(f"The sum of the numbers in the code is {codeSum}.")
     print(f"The product of the numbers in the code is {codeProduct}.\n")
 
     try:
@@ -35,13 +39,14 @@ def playGame(difficulty):
 
         if (guessSum == codeSum and guessProduct == codeProduct):
             print(
-                f"You feel the tumbler slide into place, {5 - difficulty} tumblers left.")
+                f"Success!\nYou feel the tumbler slide into place.\n")
             return True
         else:
-            print("The guards have caught you, they beat you into unconsciousness...\n")
+            print(
+                "FAIL.\nThe guards have caught you, they beat you into unconsciousness...\n")
             return False
     except ValueError:
-        print("\n***You have entered an invalid character. Please try again.***\n")
+        print("\n***INVALID INPUT: You have entered an invalid character. Please try again.***\n")
 
 
 def main():
