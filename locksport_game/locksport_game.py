@@ -71,7 +71,7 @@ def main():
             else:
                 if attempts == 0:
                     print(
-                        "You have broken all of your lockpicks, you have no way to escape.\nGAME OVER.\n")
+                        "You have broken all of your lockpicks, you have no way to escape.\n")
                     return 0
                 print(
                     f"FAIL.\nYou have broken one of your lock picks. You have {attempts} lockpicks left.\n")
@@ -81,4 +81,16 @@ def main():
     return 0
 
 
-main()
+def playAgain():
+    main()
+    while True:
+        reset = input("Would you like to play again? (y/n) ")
+        reset = reset.lower()
+        if (reset == "yes" or reset == "y"):
+            playAgain()
+        if (reset == "no" or reset == "n"):
+            print("GAME OVER.")
+        return 0
+
+
+playAgain()
