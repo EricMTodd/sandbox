@@ -21,7 +21,6 @@ def playGame(difficulty, maxLevel, attempts):
     if difficulty == maxLevel:
         print(
             f"You're on the last tumbler!\n")
-
     else:
         print(
             f"You are currently on tumbler number {difficulty}.\n{maxLevel - difficulty} tumblers left.\n")
