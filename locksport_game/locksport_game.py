@@ -78,7 +78,7 @@ def main():
                     f"FAIL.\nYou have broken one of your lock picks. You have {attempts} lockpicks left.\n")
 
     print(
-        "You pop the lock, and throw open the door at a dead sprint into the night!\n")
+        "WIN!\nYou pop the lock, and throw open the door at a dead sprint into the night!\n")
     return 0
 
 
