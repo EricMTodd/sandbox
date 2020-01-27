@@ -32,22 +32,19 @@ def playGame(difficulty, maxLevel, attempts):
     print(f"The sum of the numbers in the code is {codeSum}.")
     print(f"The product of the numbers in the code is {codeProduct}.\n")
 
-    try:
-        guessA = int(input("Please guess the first digit of the code: "))
-        guessB = int(input("Please guess the second digit of the code: "))
-        guessC = int(input("Please guess the third digit of the code: "))
+    guessA = int(input("Please guess the first digit of the code: "))
+    guessB = int(input("Please guess the second digit of the code: "))
+    guessC = int(input("Please guess the third digit of the code: "))
 
-        print(f"Your guess: {guessA} {guessB} {guessC}\n")
+    print(f"Your guess: {guessA} {guessB} {guessC}\n")
 
-        guessSum = guessA + guessB + guessC
-        guessProduct = guessA * guessB * guessC
+    guessSum = guessA + guessB + guessC
+    guessProduct = guessA * guessB * guessC
 
-        if (guessSum == codeSum and guessProduct == codeProduct):
-            return True
-        else:
-            return False
-    except ValueError:
-        print("\n***INVALID INPUT: You have entered an invalid character. Please try again.***\n")
+    if (guessSum == codeSum and guessProduct == codeProduct):
+        return True
+    else:
+        return False
 
 
 def main():
@@ -58,7 +55,12 @@ def main():
     printIntroduction(maxLevel, attempts)
 
     while (difficulty <= maxLevel):
-        levelComplete = playGame(difficulty, maxLevel, attempts)
+        try:
+            levelComplete = playGame(difficulty, maxLevel, attempts)
+        except ValueError:
+            print(
+                "\n***INVALID INPUT: You have entered an invalid character. Please try again.***\n")
+            continue
 
         if (levelComplete == True):
             difficulty += 1
