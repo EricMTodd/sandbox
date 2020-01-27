@@ -74,7 +74,7 @@ def main():
             else:
                 if attempts == 0:
                     print(
-                        "You have broken all of you lockpicks, you have no way to escape.\nGAME OVER.\n")
+                        "You have broken all of your lockpicks, you have no way to escape.\nGAME OVER.\n")
                     return 0
                 print(
                     f"FAIL.\nYou have broken one of your lock picks. You have {attempts} lockpicks left.\n")
