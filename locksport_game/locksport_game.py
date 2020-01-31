@@ -15,6 +15,9 @@ def playGame(difficulty, maxLevel, attempts):
     codeB = int(randint(1, 2 + difficulty))
     codeC = int(randint(1, 2 + difficulty))
 
+    # currentCode = f"{codeA} {codeB} {codeC}"
+    # print(f"currentCode: {currentCode}")
+
     codeSum = int(codeA) + int(codeB) + int(codeC)
     codeProduct = int(codeA) * int(codeB) * int(codeC)
 
@@ -53,7 +56,8 @@ def main():
 
     while (difficulty <= maxLevel):
         try:
-            levelComplete = playGame(difficulty, maxLevel, attempts)
+            levelComplete = playGame(
+                difficulty, maxLevel, attempts)
         except ValueError:
             print(
                 "\n***INVALID INPUT: You have entered an invalid character. Please try again.***\n")
@@ -81,16 +85,17 @@ def main():
     return 0
 
 
-def playAgain():
+def initialize():
+
     main()
     while True:
         reset = input("Would you like to play again? (y/n) ")
         reset = reset.lower()
         if (reset == "yes" or reset == "y"):
-            playAgain()
+            initialize()
         if (reset == "no" or reset == "n"):
-            print("GAME OVER.")
+            print("GAME OVER.\n")
         return 0
 
 
-playAgain()
+initialize()
