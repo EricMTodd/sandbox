@@ -14,7 +14,7 @@ def generateRandomCode(difficulty):
     codeB = int(randint(1, 2 + difficulty))
     codeC = int(randint(1, 2 + difficulty))
 
-    print(f"current code: {codeA} {codeB} {codeC}\n")
+    # print(f"current code: {codeA} {codeB} {codeC}\n")
 
     codeSum = codeA + codeB + codeC
     codeProduct = codeA * codeB * codeC
