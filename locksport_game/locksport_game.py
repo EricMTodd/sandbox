@@ -9,17 +9,20 @@ def printIntroduction(maxLevel, attempts):
         f"This lock has {maxLevel} tumblers and you have {attempts} lockpicks you can use, try not to break them!\n")
 
 
-def playGame(difficulty, maxLevel, attempts):
-
+def generateRandomCode(difficulty):
     codeA = int(randint(1, 2 + difficulty))
     codeB = int(randint(1, 2 + difficulty))
     codeC = int(randint(1, 2 + difficulty))
 
-    # currentCode = f"{codeA} {codeB} {codeC}"
-    # print(f"currentCode: {currentCode}")
+    # print(f"current code: {codeA} {codeB} {codeC}\n")
 
-    codeSum = int(codeA) + int(codeB) + int(codeC)
-    codeProduct = int(codeA) * int(codeB) * int(codeC)
+    codeSum = codeA + codeB + codeC
+    codeProduct = codeA * codeB * codeC
+
+    return codeSum, codeProduct
+
+
+def playGame(codeSum, codeProduct, difficulty, maxLevel):
 
     if difficulty == maxLevel:
         print(
@@ -54,10 +57,14 @@ def main():
 
     printIntroduction(maxLevel, attempts)
 
+    codeTuple = generateRandomCode(difficulty)
+    codeSum = codeTuple[0]
+    codeProduct = codeTuple[1]
+
     while (difficulty <= maxLevel):
         try:
             levelComplete = playGame(
-                difficulty, maxLevel, attempts)
+                codeSum, codeProduct, difficulty, maxLevel)
         except ValueError:
             print(
                 "\n***INVALID INPUT: You have entered an invalid character. Please try again.***\n")
@@ -65,6 +72,9 @@ def main():
 
         if (levelComplete == True):
             difficulty += 1
+            codeTuple = generateRandomCode(difficulty)
+            codeSum = codeTuple[0]
+            codeProduct = codeTuple[1]
             print(
                 f"SUCCESS!\nYou feel the tumbler slide into place.\n")
         else:
@@ -75,7 +85,7 @@ def main():
             else:
                 if attempts == 0:
                     print(
-                        "You have broken all of your lockpicks, you have no way to escape.\n")
+                        "FAIL.\nYou have broken all of your lockpicks, you have no way to escape.\n")
                     return 0
                 print(
                     f"FAIL.\nYou have broken one of your lock picks. You have {attempts} lockpicks left.\n")
