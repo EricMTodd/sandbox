@@ -14,7 +14,7 @@ def generateRandomCode(difficulty):
     codeB = int(randint(1, 2 + difficulty))
     codeC = int(randint(1, 2 + difficulty))
 
-    # print(f"current code: {codeA} {codeB} {codeC}\n")
+    print(f"current code: {codeA} {codeB} {codeC}\n")
 
     codeSum = codeA + codeB + codeC
     codeProduct = codeA * codeB * codeC
@@ -52,7 +52,13 @@ def playGame(codeSum, codeProduct, difficulty, maxLevel):
 
 def main():
     difficulty = int(1)
-    maxLevel = int(5)
+    maxLevel = int(
+        input(f"\nPlease choose your difficulty by typing a number from 3 to 10: "))
+    if (maxLevel in range(3, 11)):
+        print(f"Difficulty {maxLevel}.")
+    else:
+        print("\n***INVALID INPUT***")
+        main()
     attempts = int(ceil(maxLevel * 0.25))
 
     printIntroduction(maxLevel, attempts)
@@ -67,7 +73,7 @@ def main():
                 codeSum, codeProduct, difficulty, maxLevel)
         except ValueError:
             print(
-                "\n***INVALID INPUT: You have entered an invalid character. Please try again.***\n")
+                "\n***INVALID INPUT***\n")
             continue
 
         if (levelComplete == True):
@@ -105,7 +111,9 @@ def initialize():
             initialize()
         if (reset == "no" or reset == "n"):
             print("GAME OVER.\n")
-        return 0
+            return 0
+        else:
+            continue
 
 
 initialize()
