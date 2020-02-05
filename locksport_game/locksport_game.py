@@ -5,8 +5,12 @@ from math import ceil
 def printIntroduction(maxLevel, attempts):
     print("\nYou've just stolen a pricelss artifact worth a fortune, it won't be long until you're caught.")
     print("You find a locked door barring your escape. You pull out your lockpicking kit and get to work.\n")
-    print(
-        f"This lock has {maxLevel} tumblers and you have {attempts} lockpicks you can use, try not to break them!\n")
+    if (attempts == 1):
+        print(
+            f"This lock has {maxLevel} tumblers and you only have {attempts} lockpick you can use, try not to break it!\n")
+    else:
+        print(
+            f"This lock has {maxLevel} tumblers and you have {attempts} lockpicks you can use, try not to break them!\n")
 
 
 def generateRandomCode(difficulty):
