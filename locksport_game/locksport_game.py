@@ -18,12 +18,20 @@ def generateRandomCode(difficulty):
     codeB = randint(1, 2 + difficulty)
     codeC = randint(1, 2 + difficulty)
 
-    # print(f"current code: {codeA} {codeB} {codeC}\n")
+    print(f"current code: {codeA} {codeB} {codeC}\n")
 
     codeSum = codeA + codeB + codeC
     codeProduct = codeA * codeB * codeC
 
     return codeSum, codeProduct
+
+
+def getInt(prompt, error_message="\n***INVALID INPUT***\n"):
+    while True:
+        try:
+            return int(input(prompt))
+        except ValueError:
+            print(error_message)
 
 
 def playGame(codeSum, codeProduct, difficulty, maxLevel):
@@ -39,9 +47,9 @@ def playGame(codeSum, codeProduct, difficulty, maxLevel):
     print(f"The sum of the numbers in the code is {codeSum}.")
     print(f"The product of the numbers in the code is {codeProduct}.\n")
 
-    guessA = input("Please guess the first digit of the code: ")
-    guessB = input("Please guess the second digit of the code: ")
-    guessC = input("Please guess the third digit of the code: ")
+    guessA = getInt("Please guess the first digit of the code: ")
+    guessB = getInt("Please guess the second digit of the code: ")
+    guessC = getInt("Please guess the third digit of the code: ")
 
     print(f"Your guess: {guessA} {guessB} {guessC}\n")
 
@@ -90,22 +98,22 @@ def main():
 
     print(
         "WIN!\nYou pop the lock, and throw open the door at a dead sprint into the night!\n")
-    return 0
+    return
 
 
-def playGame():
+def reset():
 
-    main()
     while True:
         reset = input("Would you like to play again? (y/n) ")
         reset = reset.lower()
         if reset == "yes" or reset == "y":
-            playGame()
-        if reset == "no" or reset == "n":
+            main()
+        elif reset == "no" or reset == "n":
             print("GAME OVER.\n")
             return
         else:
             continue
 
 
-playGame()
+main()
+reset()
