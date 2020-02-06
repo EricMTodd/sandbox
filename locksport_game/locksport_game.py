@@ -18,7 +18,7 @@ def generateRandomCode(difficulty):
     codeB = randint(1, 2 + difficulty)
     codeC = randint(1, 2 + difficulty)
 
-    print(f"current code: {codeA} {codeB} {codeC}\n")
+    # print(f"current code: {codeA} {codeB} {codeC}\n")
 
     codeSum = codeA + codeB + codeC
     codeProduct = codeA * codeB * codeC
@@ -62,8 +62,8 @@ def playGame(codeSum, codeProduct, difficulty, maxLevel):
 def main():
     print("\n--WELCOME TO LOCKSPORT--\n")
     difficulty = 1
-    maxLevel = int(input(
-        f"Please choose your difficulty by typing a number from 3 to 10: "))
+    maxLevel = getInt(
+        f"Please choose your difficulty by typing a number from 3 to 10: ")
     if maxLevel in range(3, 11):
         print(f"Difficulty {maxLevel}.")
     else:
