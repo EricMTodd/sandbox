@@ -5,7 +5,7 @@ from math import ceil
 def printIntroduction(maxLevel, attempts):
     print("\nYou've just stolen a pricelss artifact worth a fortune, it won't be long until you're caught.")
     print("You find a locked door barring your escape. You pull out your lockpicking kit and get to work.\n")
-    if (attempts == 1):
+    if attempts == 1:
         print(
             f"This lock has {maxLevel} tumblers and you only have {attempts} lockpick you can use, try not to break it!\n")
     else:
@@ -14,9 +14,9 @@ def printIntroduction(maxLevel, attempts):
 
 
 def generateRandomCode(difficulty):
-    codeA = int(randint(1, 2 + difficulty))
-    codeB = int(randint(1, 2 + difficulty))
-    codeC = int(randint(1, 2 + difficulty))
+    codeA = randint(1, 2 + difficulty)
+    codeB = randint(1, 2 + difficulty)
+    codeC = randint(1, 2 + difficulty)
 
     # print(f"current code: {codeA} {codeB} {codeC}\n")
 
@@ -39,40 +39,29 @@ def playGame(codeSum, codeProduct, difficulty, maxLevel):
     print(f"The sum of the numbers in the code is {codeSum}.")
     print(f"The product of the numbers in the code is {codeProduct}.\n")
 
-    guessA = int(input("Please guess the first digit of the code: "))
-    guessB = int(input("Please guess the second digit of the code: "))
-    guessC = int(input("Please guess the third digit of the code: "))
+    guessA = input("Please guess the first digit of the code: ")
+    guessB = input("Please guess the second digit of the code: ")
+    guessC = input("Please guess the third digit of the code: ")
 
     print(f"Your guess: {guessA} {guessB} {guessC}\n")
 
     guessSum = guessA + guessB + guessC
     guessProduct = guessA * guessB * guessC
 
-    if (guessSum == codeSum and guessProduct == codeProduct):
-        return True
-    else:
-        return False
+    return guessSum == codeSum and guessProduct == codeProduct
 
 
 def main():
     print("\n--WELCOME TO LOCKSPORT--\n")
-    difficulty = int(1)
-    maxLevel = int(
-        input(f"Choose your difficulty by typing a number from 3 to 10: "))
-    if (maxLevel in range(3, 11)):
-        print(f"Difficulty {maxLevel}.")
-    else:
-        print("\n***INVALID INPUT***")
-        main()
+    difficulty = 1
+    maxLevel = 5
     attempts = int(ceil(maxLevel * 0.25))
 
     printIntroduction(maxLevel, attempts)
 
-    codeTuple = generateRandomCode(difficulty)
-    codeSum = codeTuple[0]
-    codeProduct = codeTuple[1]
+    codeSum, codeProduct = generateRandomCode(difficulty)
 
-    while (difficulty <= maxLevel):
+    while difficulty <= maxLevel:
         try:
             levelComplete = playGame(
                 codeSum, codeProduct, difficulty, maxLevel)
@@ -81,11 +70,9 @@ def main():
                 "\n***INVALID INPUT***\n")
             continue
 
-        if (levelComplete == True):
+        if levelComplete:
             difficulty += 1
-            codeTuple = generateRandomCode(difficulty)
-            codeSum = codeTuple[0]
-            codeProduct = codeTuple[1]
+            codeSum, codeProduct = generateRandomCode(difficulty)
             print(
                 f"SUCCESS!\nYou feel the tumbler slide into place.\n")
         else:
@@ -106,19 +93,19 @@ def main():
     return 0
 
 
-def initialize():
+def playGame():
 
     main()
     while True:
         reset = input("Would you like to play again? (y/n) ")
         reset = reset.lower()
-        if (reset == "yes" or reset == "y"):
-            initialize()
-        if (reset == "no" or reset == "n"):
+        if reset == "yes" or reset == "y":
+            playGame()
+        if reset == "no" or reset == "n":
             print("GAME OVER.\n")
-            return 0
+            return
         else:
             continue
 
 
-initialize()
+playGame()
