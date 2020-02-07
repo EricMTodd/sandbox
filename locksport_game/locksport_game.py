@@ -2,31 +2,31 @@ from random import randint
 from math import ceil
 
 
-def printIntroduction(maxLevel, attempts):
+def print_introduction(max_level, attempts):
     print("\nYou've just stolen a pricelss artifact worth a fortune, it won't be long until you're caught.")
     print("You find a locked door barring your escape. You pull out your lockpicking kit and get to work.\n")
     if attempts == 1:
         print(
-            f"This lock has {maxLevel} tumblers and you only have {attempts} lockpick you can use, try not to break it!\n")
+            f"This lock has {max_level} tumblers and you only have {attempts} lockpick you can use, try not to break it!\n")
     else:
         print(
-            f"This lock has {maxLevel} tumblers and you have {attempts} lockpicks you can use, try not to break them!\n")
+            f"This lock has {max_level} tumblers and you have {attempts} lockpicks you can use, try not to break them!\n")
 
 
-def generateRandomCode(difficulty):
+def generate_random_code(difficulty):
     codeA = randint(1, 2 + difficulty)
     codeB = randint(1, 2 + difficulty)
     codeC = randint(1, 2 + difficulty)
 
     # print(f"current code: {codeA} {codeB} {codeC}\n")
 
-    codeSum = codeA + codeB + codeC
-    codeProduct = codeA * codeB * codeC
+    code_sum = codeA + codeB + codeC
+    code_product = codeA * codeB * codeC
 
-    return codeSum, codeProduct
+    return code_sum, code_product
 
 
-def getInt(prompt):
+def get_int(prompt):
     while True:
         try:
             return int(input(prompt))
@@ -34,66 +34,66 @@ def getInt(prompt):
             print("\n***INVALID INPUT***\n")
 
 
-def playGame(codeSum, codeProduct, difficulty, maxLevel):
+def play_game(code_sum, code_product, difficulty, max_level):
 
-    if difficulty == maxLevel:
+    if difficulty == max_level:
         print(
             f"You're on the last tumbler!\n")
     else:
-        if maxLevel - difficulty == 1:
+        if max_level - difficulty == 1:
             print(
-                f"You are currently on tumbler number {difficulty}.\n{maxLevel - difficulty} tumbler left.\n")
+                f"You are currently on tumbler number {difficulty}.\n{max_level - difficulty} tumbler left.\n")
         else:
             print(
-                f"You are currently on tumbler number {difficulty}.\n{maxLevel - difficulty} tumblers left.\n")
+                f"You are currently on tumbler number {difficulty}.\n{max_level - difficulty} tumblers left.\n")
 
     print("You must guess a three number code in order to successfully fit each tumbler into place.")
-    print(f"The sum of the numbers in the code is {codeSum}.")
-    print(f"The product of the numbers in the code is {codeProduct}.\n")
+    print(f"The sum of the numbers in the code is {code_sum}.")
+    print(f"The product of the numbers in the code is {code_product}.\n")
 
-    guessA = getInt("Please guess the first digit of the code: ")
-    guessB = getInt("Please guess the second digit of the code: ")
-    guessC = getInt("Please guess the third digit of the code: ")
+    guess_a = get_int("Please guess the first digit of the code: ")
+    guess_b = get_int("Please guess the second digit of the code: ")
+    guess_c = get_int("Please guess the third digit of the code: ")
 
-    print(f"Your guess: {guessA} {guessB} {guessC}\n")
+    print(f"Your guess: {guess_a} {guess_b} {guess_c}\n")
 
-    guessSum = guessA + guessB + guessC
-    guessProduct = guessA * guessB * guessC
+    guess_sum = guess_a + guess_b + guess_c
+    guess_product = guess_a * guess_b * guess_c
 
-    return guessSum == codeSum and guessProduct == codeProduct
+    return guess_sum == code_sum and guess_product == code_product
 
 
 def main():
     print("\n--WELCOME TO LOCKSPORT--\n")
     difficulty = 1
-    maxLevel = 0
+    max_level = 0
     while True:
         try:
-            maxLevel = getInt("Please enter a number from 3 to 10: ")
-            if maxLevel not in range(3, 11):
+            max_level = get_int("Please enter a number from 3 to 10: ")
+            if max_level not in range(3, 11):
                 raise ValueError
             break
         except ValueError:
             print("\n***INVALID INPUT***\n")
 
-    attempts = int(ceil(maxLevel * 0.25))
+    attempts = int(ceil(max_level * 0.25))
 
-    printIntroduction(maxLevel, attempts)
+    print_introduction(max_level, attempts)
 
-    codeSum, codeProduct = generateRandomCode(difficulty)
+    code_sum, code_product = generate_random_code(difficulty)
 
-    while difficulty <= maxLevel:
+    while difficulty <= max_level:
         try:
-            levelComplete = playGame(
-                codeSum, codeProduct, difficulty, maxLevel)
+            level_complete = play_game(
+                code_sum, code_product, difficulty, max_level)
         except ValueError:
             print(
                 "\n***INVALID INPUT***\n")
             continue
 
-        if levelComplete:
+        if level_complete:
             difficulty += 1
-            codeSum, codeProduct = generateRandomCode(difficulty)
+            code_sum, code_product = generate_random_code(difficulty)
             print(
                 f"SUCCESS!\nYou feel the tumbler slide into place.\n")
         else:
