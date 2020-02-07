@@ -14,14 +14,14 @@ def print_introduction(max_level, attempts):
 
 
 def generate_random_code(difficulty):
-    codeA = randint(1, 2 + difficulty)
-    codeB = randint(1, 2 + difficulty)
-    codeC = randint(1, 2 + difficulty)
+    code_a = randint(1, 2 + difficulty)
+    code_b = randint(1, 2 + difficulty)
+    code_c = randint(1, 2 + difficulty)
 
-    # print(f"current code: {codeA} {codeB} {codeC}\n")
+    # print(f"current code: {code_a} {code_b} {code_c}\n")
 
-    code_sum = codeA + codeB + codeC
-    code_product = codeA * codeB * codeC
+    code_sum = code_a + code_b + code_c
+    code_product = code_a * code_b * code_c
 
     return code_sum, code_product
 
