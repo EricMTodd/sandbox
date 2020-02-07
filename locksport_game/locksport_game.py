@@ -26,12 +26,12 @@ def generateRandomCode(difficulty):
     return codeSum, codeProduct
 
 
-def getInt(prompt, error_message="\n***INVALID INPUT***\n"):
+def getInt(prompt):
     while True:
         try:
             return int(input(prompt))
         except ValueError:
-            print(error_message)
+            print("\n***INVALID INPUT***\n")
 
 
 def playGame(codeSum, codeProduct, difficulty, maxLevel):
@@ -40,8 +40,12 @@ def playGame(codeSum, codeProduct, difficulty, maxLevel):
         print(
             f"You're on the last tumbler!\n")
     else:
-        print(
-            f"You are currently on tumbler number {difficulty}.\n{maxLevel - difficulty} tumblers left.\n")
+        if maxLevel - difficulty == 1:
+            print(
+                f"You are currently on tumbler number {difficulty}.\n{maxLevel - difficulty} tumbler left.\n")
+        else:
+            print(
+                f"You are currently on tumbler number {difficulty}.\n{maxLevel - difficulty} tumblers left.\n")
 
     print("You must guess a three number code in order to successfully fit each tumbler into place.")
     print(f"The sum of the numbers in the code is {codeSum}.")
@@ -63,9 +67,12 @@ def main():
     print("\n--WELCOME TO LOCKSPORT--\n")
     difficulty = 1
     maxLevel = 0
-    while 3 > maxLevel or 10 < maxLevel:
+    while True:
         try:
-            maxLevel = int(input("Please enter a number from 3 to 10: "))
+            maxLevel = getInt("Please enter a number from 3 to 10: ")
+            if maxLevel not in range(3, 11):
+                raise ValueError
+            break
         except ValueError:
             print("\n***INVALID INPUT***\n")
 
@@ -98,7 +105,7 @@ def main():
                 if attempts == 0:
                     print(
                         "FAIL.\nYou have broken all of your lockpicks, you have no way to escape.\n")
-                    return 0
+                    return
                 print(
                     f"FAIL.\nYou have broken one of your lock picks. You have {attempts} lockpicks left.\n")
 
