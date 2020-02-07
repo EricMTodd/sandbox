@@ -62,13 +62,13 @@ def playGame(codeSum, codeProduct, difficulty, maxLevel):
 def main():
     print("\n--WELCOME TO LOCKSPORT--\n")
     difficulty = 1
-    maxLevel = getInt(
-        f"Please choose your difficulty by typing a number from 3 to 10: ")
-    if maxLevel in range(3, 11):
-        print(f"Difficulty {maxLevel}.")
-    else:
-        print("\n***INVALID INPUT***")
-        main()
+    maxLevel = 0
+    while 3 > maxLevel or 10 < maxLevel:
+        try:
+            maxLevel = int(input("Please enter a number from 3 to 10: "))
+        except ValueError:
+            print("\n***INVALID INPUT***\n")
+
     attempts = int(ceil(maxLevel * 0.25))
 
     printIntroduction(maxLevel, attempts)
