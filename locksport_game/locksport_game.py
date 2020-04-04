@@ -34,6 +34,14 @@ def get_int(prompt):
             print("\n***INVALID INPUT***\n")
 
 
+def get_str(prompt):
+    while True:
+        try:
+            return str(input(prompt))
+        except ValueError:
+            print("\n***INVALID INPUT***\n")
+
+
 def play_game(code_sum, code_product, difficulty, max_level):
 
     if difficulty == max_level:
