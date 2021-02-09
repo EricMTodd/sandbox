@@ -7,41 +7,33 @@ def start_game()
     puts()
     # Establish difficulty
     difficulty = 3
-    level = 1
+    @level = 1
     chances = (difficulty * 0.6.to_f).ceil
     game_loop(difficulty, level, chances)
 end
 
-def game_loop(difficulty, level, chances)
+def game_loop(difficulty, level, chances) # add arguemnt, previous code = nil
     # While loop to control difficulty
+    # if preveious code = nil, generate code; else use previous
     while level <= difficulty
         puts("level: #{level}")
         puts("chances: #{chances}")
         # How many chances left?
         if chances == 0
-            game_over(chances)
+            return game_over(chances)
         end
         # Generate Code
-        generate_code(difficulty, level, chances)
+        return generate_code(difficulty, level, chances)
     end
     game_over(chances)
 end
 
 def generate_code(difficulty, level, chances)
-    challenge_modifier = 1 + level
     # Randomize code
-    code_a = rand(1..challenge_modifier)
-    code_b = rand(1..challenge_modifier)
-    code_c = rand(1..challenge_modifier)
-    # puts("code: #{code_a} #{code_b} #{code_c}")
     # Evaluate sum and product of code
     puts()
-    sum_of_code = code_a + code_b + code_c
-    puts("The sum of the three digit code is: #{sum_of_code}")
-    product_of_code = (code_a * code_b * code_c)
-    puts("The product of the three digit code is: #{product_of_code}")
     # Execute player input method
-    player_input(sum_of_code, product_of_code, difficulty, level, chances)
+    player_input(sum_of_code(level), product_of_code(level), difficulty, level, chances)
 end
 
 def player_input(sum_of_code, product_of_code, difficulty, level, chances)
@@ -57,7 +49,7 @@ def player_input(sum_of_code, product_of_code, difficulty, level, chances)
     guess_sum = guess_a + guess_b + guess_c
     guess_product = guess_a * guess_b * guess_c
     # Evaluate against random code
-    if guess_sum == sum_of_code && guess_product == product_of_code
+    if guess_sum == sum_of_code && guess_product == product_of_code # can be it's own method; correct_guess?
         puts()
         puts("SUCCESS")
         win_state(difficulty, level, chances)
@@ -67,6 +59,58 @@ def player_input(sum_of_code, product_of_code, difficulty, level, chances)
         fail_state(difficulty, level, chances)
     end
     # Execute win/loss
+end
+
+private
+
+def challenge_modifier(level)
+    level + 1
+end
+
+def code_a(level)
+    rand(1..challenge_modifier(level))
+end
+
+def code_b(level)
+    rand(1..challenge_modifier(level))
+end
+
+def code_c(level)
+    rand(1..challenge_modifier(level))
+end
+
+def sum_of_code(level)
+    puts("The sum of the three digit code is: #{sum_of_code}")
+    return code_a(level) + code_b(level) + code_c(level)
+end
+
+def product_of_code(level)
+    puts("The product of the three digit code is: #{product_of_code}")
+    return code_a(level) * code_b(level) * code_c(level)
+end
+
+def guess_a
+    gets.chomp.to_i
+end
+
+def guess_b
+    gets.chomp.to_i
+end
+
+def guess_c
+    gets.chomp.to_i
+end
+
+def guess_sum
+    guess_a + guess_b + guess_c
+end
+
+def guess_product
+    guess_a * guess_b * guess_c
+end
+
+def correct_guess?(level)
+    guess_sum == sum_of_code(level) && guess_product == product_of_code(level)
 end
 
 def win_state(difficulty, level, chances)
